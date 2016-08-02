@@ -4,4 +4,34 @@
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>testGet</display-name>
+    <servlet-name>testGet</servlet-name>
+    <servlet-class>com.test.testGet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>testGet</servlet-name>
+    <url-pattern>/testGet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>testGet_servlet</display-name>
+    <servlet-name>testGet_servlet</servlet-name>
+    <servlet-class>com.test.testGet_servlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>testGet_servlet</servlet-name>
+    <url-pattern>/testGet_servlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>color</display-name>
+    <servlet-name>color</servlet-name>
+    <servlet-class>com.test.color</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>color</servlet-name>
+    <url-pattern>/color</url-pattern>
+  </servlet-mapping>
 </web-app>
