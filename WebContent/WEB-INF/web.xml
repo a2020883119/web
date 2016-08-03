@@ -34,4 +34,49 @@
     <servlet-name>color</servlet-name>
     <url-pattern>/color</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>cookie</display-name>
+    <servlet-name>cookie</servlet-name>
+    <servlet-class>com.test.cookie</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>cookie</servlet-name>
+    <url-pattern>/cookie</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>session</display-name>
+    <servlet-name>session</servlet-name>
+    <servlet-class>com.test.session</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>session</servlet-name>
+    <url-pattern>/session</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>getSession</display-name>
+    <servlet-name>getSession</servlet-name>
+    <servlet-class>com.test.getSession</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>getSession</servlet-name>
+    <url-pattern>/getSession</url-pattern>
+  </servlet-mapping>
+  
+  <filter>
+    <display-name>countFilter</display-name>
+    <filter-name>countFilter</filter-name>
+    <filter-class>com.test.countFilter</filter-class>
+    <init-param>
+    	<param-name>count</param-name>
+    	<param-value>0</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>countFilter</filter-name>
+    <url-pattern>/index.jsp</url-pattern>
+  </filter-mapping>
+  
 </web-app>

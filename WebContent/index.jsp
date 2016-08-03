@@ -9,8 +9,7 @@
 </head>
 <body>
 	<%@ include file = "top.jsp" %>
-	<jsp:forward page="login.jsp"></jsp:forward>
-	<%-- <jsp:include page="top.jsp"></jsp:include> --%>
+
 	<h1>你好</h1>
 	<!-- <input type="text"/> -->
 	<!--<button>haha</button> -->
@@ -39,6 +38,7 @@
 		}
 		%>
 	</table>
+	<h1><%= application.getAttribute("count") %></h1>
 	<%@ include file = "bottom.jsp" %>
 </body>
 </html>
