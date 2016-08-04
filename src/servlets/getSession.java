@@ -1,24 +1,24 @@
-package com.test;
+package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class cookie
+ * Servlet implementation class getSession
  */
-public class cookie extends HttpServlet {
+public class getSession extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public cookie() {
+    public getSession() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,10 +30,9 @@ public class cookie extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
-		Cookie cookie = new Cookie("username", "zhangsan");
-		cookie.setMaxAge(60 * 5);
-		response.addCookie(cookie);
-		out.println("<html><body><form action='cookie' method='post'><input type='submit' value='get cookie'></form></body></html>");
+		HttpSession session = request.getSession();
+		out.print("USERNAME:");
+		out.println(session.getAttribute("username"));
 	}
 
 	/**
@@ -41,18 +40,6 @@ public class cookie extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		PrintWriter out = response.getWriter();
-		Cookie [] cookies = request.getCookies();
-		out.println("<a href='cookie'>back</a><hr>");
-		if(cookies != null){
-			for(int i = 0; i < cookies.length; i++){
-				Cookie temp = cookies[i];
-				out.println(temp.getName() + " : " + temp.getValue() + "<br>");
-			}
-		}else{
-			out.println("<p>no cookie</p>");
-		}
-		
 	}
 
 }

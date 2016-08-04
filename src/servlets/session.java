@@ -1,4 +1,4 @@
-package com.test;
+package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -9,16 +9,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
 /**
- * Servlet implementation class getSession
+ * Servlet implementation class session
  */
-public class getSession extends HttpServlet {
+public class session extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public getSession() {
+    public session() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,11 +29,13 @@ public class getSession extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		HttpSession session = request.getSession();
+		session.setAttribute("username", "usernamevalue");
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
-		HttpSession session = request.getSession();
-		out.print("USERNAME:");
-		out.println(session.getAttribute("username"));
+		session.setMaxInactiveInterval(60 * 5);
+		out.print("Session 已经创建<a href='getSession'>测试session</a>");
+		
 	}
 
 	/**
