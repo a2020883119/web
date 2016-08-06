@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
   <display-name>web</display-name>
+  <context-param>
+    <param-name>clas</param-name>
+    <param-value>oracle.jdbc.driver.OracleDriver</param-value>
+  </context-param>
+  <context-param>
+    <param-name>url</param-name>
+    <param-value>jdbc:oracle:thin:@localhost:1521:test</param-value>
+  </context-param>
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
@@ -86,4 +94,67 @@
     <filter-name>visitedTimesFilter</filter-name>
     <url-pattern>/visitedTimes.jsp</url-pattern>
   </filter-mapping>
+  <listener>
+    <listener-class>servlets.AllListener</listener-class>
+  </listener>
+  <servlet>
+    <description></description>
+    <display-name>ShowTableServlet</display-name>
+    <servlet-name>ShowTableServlet</servlet-name>
+    <servlet-class>servlets.ShowTableServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ShowTableServlet</servlet-name>
+    <url-pattern>/ShowTableServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>InsertServlet</display-name>
+    <servlet-name>InsertServlet</servlet-name>
+    <servlet-class>servlets.InsertServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InsertServlet</servlet-name>
+    <url-pattern>/InsertServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ShowServlet</display-name>
+    <servlet-name>ShowServlet</servlet-name>
+    <servlet-class>servlets.ShowServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ShowServlet</servlet-name>
+    <url-pattern>/ShowServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DeleteServlet</display-name>
+    <servlet-name>DeleteServlet</servlet-name>
+    <servlet-class>servlets.DeleteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteServlet</servlet-name>
+    <url-pattern>/DeleteServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ChangeServlet</display-name>
+    <servlet-name>ChangeServlet</servlet-name>
+    <servlet-class>servlets.ChangeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ChangeServlet</servlet-name>
+    <url-pattern>/ChangeServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>QueryServlet</display-name>
+    <servlet-name>QueryServlet</servlet-name>
+    <servlet-class>servlets.QueryServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>QueryServlet</servlet-name>
+    <url-pattern>/QueryServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
