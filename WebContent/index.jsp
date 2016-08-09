@@ -10,7 +10,7 @@
 <body>
 	<%@ include file = "top.jsp" %>
 
-	<h1>你好</h1>
+	<a href="ShowServlet">shaotable</a>
 	<!-- <input type="text"/> -->
 	<!--<button>haha</button> -->
 	

@@ -39,13 +39,14 @@ public class InsertServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 //		System.out.println("ok");
+		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		Student stu = new Student();
 		stu.setName(request.getParameter("name"));
 		stu.setClas(request.getParameter("clas"));
 		stu.setAddr(request.getParameter("addr"));
-		if(new ShowTableDao().insertData(stu)){
+		if(new ShowTableDao().insertData(stu)){ 
 			out.println("ok");
 			out.println("<a href=/web/showTable.jsp>back</a><br>");
 			out.println("<a href=/web/ShowServlet>see</a>");

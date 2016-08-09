@@ -6,12 +6,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="/web/regis.jsp">regis</a>
+<a href="/web/login.jsp">login</a>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	<center>
-		<form action="LoginServlet" method="post">
-			username: <input type="text" name="username"/><br>
-			password: <input type="password" name="password"/><br>
+		<form action="RegisServlet" method="post">
+			&nbsp;username&nbsp;&nbsp;: <input type="text" name="username"/><br>
+			password1: <input type="password" name="password1"/><br>
+			password2: <input type="password" name="password2"/><br>
 			<input type="submit" value="submit"/> 
 			<input type="reset" value="reset"/>
 		</form>

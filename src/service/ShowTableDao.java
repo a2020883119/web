@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Scanner;
 import db.DBCon;
 import entity.Student;
 
@@ -171,32 +171,20 @@ public class ShowTableDao {
 		List list = new ArrayList();
 		DBCon db = new DBCon();
 		Connection conn = db.getConn();
-		String sql = " select * from showtable where ";
+		String sql = " select * from showtable where 1 = 1 ";
 		String endSql;
 		endSql = " order by id ";
 		if(stu.getId() != 0){
 			sql += " id = " + stu.getId();
 		}
 		if(!("".equals(stu.getName()))){
-			if(sql.equals(" select * from showtable where ")){
-				sql += " name = '" + stu.getName() + "' ";
-			}else{
-				sql += " and name = '" + stu.getName() + "' ";
-			}		
+			sql += " name = '" + stu.getName() + "' ";
 		}
 		if(!("".equals(stu.getClas()))){
-			if(sql.equals(" select * from showtable where ")){
-				sql += " class = '" + stu.getClas() + "' ";
-			}else{
-				sql += " and class = '" + stu.getClas() + "' ";
-			}
+			sql += " class = '" + stu.getClas() + "' ";
 		}
 		if(!("".equals(stu.getAddr()))){
-			if(sql.equals(" select * from showtable where ")){
-				sql += " addr = '" + stu.getAddr() + "' ";
-			}else{
-				sql += " and addr = '" + stu.getAddr() + "' ";
-			}
+			sql += " addr = '" + stu.getAddr() + "' ";
 		}
 		sql += endSql;
 		Student stuu = null;
@@ -215,5 +203,67 @@ public class ShowTableDao {
 			e.printStackTrace();
 		}
 		return list;
+	}
+	public boolean usernameExists(String username) {
+		// TODO Auto-generated method stub
+		DBCon db = new DBCon();
+		Connection conn = db.getConn();
+		String sql = "select * from showtable_users where username = ?";
+		boolean flag = false;
+		try {
+			PreparedStatement st = conn.prepareStatement(sql);
+			st.setString(1, username);
+			ResultSet rs = st.executeQuery();
+			while(rs.next()){
+				flag = true;
+			}
+			db.safeClose(rs);
+			db.safeClose(st);
+			db.safeClose(conn);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return flag;
+	}
+	public static boolean login(String username, String password) throws Exception{
+		boolean flag = false;
+		Connection conn = new DBCon().getConn();
+		Statement stm = conn.createStatement();
+		String sql = "SELECT * FROM USERS WHERE username = '" + username + "'";
+		ResultSet rs = stm.executeQuery(sql);
+		if(rs.next()){
+				if(password.equals(rs.getString("password"))){
+					flag = true;
+				}
+		}
+		conn.close();
+		return flag;
+	}
+	public boolean insertUser(String username ,String password) {
+		// TODO Auto-generated method stub
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		String sql = null;
+		boolean flag = false;
+		DBCon db = new DBCon();
+		Connection conn = db.getConn();
+		try {
+			sql = "insert into showtable_users values(?, ?)";
+			st = conn.prepareStatement(sql);
+			st.setString(1, username);
+			st.setString(2, password);
+			rs = st.executeQuery();
+			while(rs.next()){
+				flag = true;
+			}
+			db.safeClose(rs);
+			db.safeClose(st);
+			db.safeClose(conn);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return flag;
 	}
 }

@@ -1,27 +1,25 @@
 package servlets;
 
 import java.io.IOException;
-import java.util.List;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
-
 import service.ShowTableDao;
 
 /**
- * Servlet implementation class ShowServlet
+ * Servlet implementation class LoginServlet
  */
-public class ShowServlet extends HttpServlet {
+public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ShowServlet() {
+    public LoginServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,7 +29,6 @@ public class ShowServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doPost(request, response);
 	}
 
 	/**
@@ -39,18 +36,20 @@ public class ShowServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		ShowTableDao std = new ShowTableDao();
-		@SuppressWarnings("rawtypes")
-		List list = std.getStuList();
-		int totalPage = list.size() / 10 + 1;
-		int page = 1;
-		request.getSession().setAttribute("stuList", list.subList(0, 10));
-		request.getSession().setAttribute("first", "1");
-		request.getSession().setAttribute("last", totalPage);
-		request.getSession().setAttribute("page", page);
-		request.getSession().setAttribute("total", list.size());
-		request.getRequestDispatcher("/showTable.jsp").forward(request, response);
-		
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		if(!"".equals(password) && password != null && !"".equals(username) && username != null ){
+			if(new ShowTableDao().usernameExists(username)){
+				request.getRequestDispatcher("/ShowServlet").forward(request, response);
+				request.getSession().setAttribute("username", username);
+				return;
+			}
+		}
+		PrintWriter out = response.getWriter();
+		out.println("<h1>登录失败</h1><hr>");
+//		response.sendRedirect("/web/regis.jsp"); 
+		request.getRequestDispatcher("/login.jsp").forward(request, response);
+		out.flush();
 	}
 	
 }

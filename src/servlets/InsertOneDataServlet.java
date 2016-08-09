@@ -1,27 +1,26 @@
 package servlets;
 
 import java.io.IOException;
-import java.util.List;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
-
 import service.ShowTableDao;
+import entity.Student;
 
 /**
- * Servlet implementation class ShowServlet
+ * Servlet implementation class InsertOneDataServlet
  */
-public class ShowServlet extends HttpServlet {
+public class InsertOneDataServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ShowServlet() {
+    public InsertOneDataServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,18 +38,19 @@ public class ShowServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		ShowTableDao std = new ShowTableDao();
-		@SuppressWarnings("rawtypes")
-		List list = std.getStuList();
-		int totalPage = list.size() / 10 + 1;
-		int page = 1;
-		request.getSession().setAttribute("stuList", list.subList(0, 10));
-		request.getSession().setAttribute("first", "1");
-		request.getSession().setAttribute("last", totalPage);
-		request.getSession().setAttribute("page", page);
-		request.getSession().setAttribute("total", list.size());
-		request.getRequestDispatcher("/showTable.jsp").forward(request, response);
-		
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		Student stu = new Student();
+		stu.setName("测试数据");
+		stu.setClas("测试数据");
+		stu.setAddr("测试数据");
+		if(new ShowTableDao().insertData(stu)){
+			request.getRequestDispatcher("/ShowServlet").forward(request, response);
+		}else{
+			out.println("not ok");
+			out.println("<a href=/web/showTable.jsp>back</a>");
+		}
 	}
-	
+
 }

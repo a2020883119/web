@@ -1,27 +1,25 @@
 package servlets;
 
 import java.io.IOException;
-import java.util.List;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
-
 import service.ShowTableDao;
 
 /**
- * Servlet implementation class ShowServlet
+ * Servlet implementation class RegisServlet
  */
-public class ShowServlet extends HttpServlet {
+public class RegisServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ShowServlet() {
+    public RegisServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,6 +30,7 @@ public class ShowServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doPost(request, response);
+		
 	}
 
 	/**
@@ -39,18 +38,23 @@ public class ShowServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		ShowTableDao std = new ShowTableDao();
-		@SuppressWarnings("rawtypes")
-		List list = std.getStuList();
-		int totalPage = list.size() / 10 + 1;
-		int page = 1;
-		request.getSession().setAttribute("stuList", list.subList(0, 10));
-		request.getSession().setAttribute("first", "1");
-		request.getSession().setAttribute("last", totalPage);
-		request.getSession().setAttribute("page", page);
-		request.getSession().setAttribute("total", list.size());
-		request.getRequestDispatcher("/showTable.jsp").forward(request, response);
-		
+		String username = request.getParameter("username");
+		String password1 = request.getParameter("password1");
+		String password2 = request.getParameter("password2");
+		if(!"".equals(password1) && password1 != null && !"".equals(username) && username != null ){
+			if(password1.equals(password2)){
+				if(!new ShowTableDao().usernameExists(username)){
+					new ShowTableDao().insertUser(username, password1);
+					response.sendRedirect("/web/login.jsp");
+					return;
+				}
+			}
+		}
+		PrintWriter out = response.getWriter();
+		out.println("<h1>注册失败</h1><hr>");
+//		response.sendRedirect("/web/regis.jsp"); 
+		request.getRequestDispatcher("/regis.jsp").forward(request, response);
+		out.flush();
 	}
-	
+
 }
