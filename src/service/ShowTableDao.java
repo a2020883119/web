@@ -175,16 +175,16 @@ public class ShowTableDao {
 		String endSql;
 		endSql = " order by id ";
 		if(stu.getId() != 0){
-			sql += " id = " + stu.getId();
+			sql += "and id = " + stu.getId();
 		}
 		if(!("".equals(stu.getName()))){
-			sql += " name = '" + stu.getName() + "' ";
+			sql += "and name = '" + stu.getName() + "' ";
 		}
 		if(!("".equals(stu.getClas()))){
-			sql += " class = '" + stu.getClas() + "' ";
+			sql += "and class = '" + stu.getClas() + "' ";
 		}
 		if(!("".equals(stu.getAddr()))){
-			sql += " addr = '" + stu.getAddr() + "' ";
+			sql += "and addr = '" + stu.getAddr() + "' ";
 		}
 		sql += endSql;
 		Student stuu = null;

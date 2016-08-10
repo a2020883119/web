@@ -6,6 +6,40 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
+	<%
+		String [] strArr = {"0", "1", "2", "3",};
+		request.setAttribute("testArr", strArr);
+
+		session.setAttribute("test", "test");
+	%>
+	<center>
+	<form action="ELPrac_Get.jsp" method="post">
+	<table>
+		<tr>
+			<td>
+				<h1>test</h1>
+			</td>
+		</tr>
+		<tr>
+			<td>id:<input type="text"/ name="id"></td>
+		</tr>
+		<tr>
+			<td>name:<input type="text" name="name"/></td>
+		</tr>
+		<tr>
+			<td>addr:<input type="text" name="addr"/></td>
+		</tr>
+		<tr>
+			<td>price:<input type="text" name="price"/></td>
+		</tr>
+		<tr>
+			<td>count:<input type="text" name="count"/></td>
+		</tr>
+		<tr>
+			<td><input type="submit" value="submit"></td>
+		</tr>
+	</table>
+	</form>
+</center>
 </body>
 </html>

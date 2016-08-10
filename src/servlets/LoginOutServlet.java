@@ -36,7 +36,7 @@ public class LoginOutServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String username = request.getSession().getAttribute("username").toString();
 		request.getSession().invalidate();
-		System.out.println(username + "登出成功");
+		System.out.println("当前用户: " + username + " 登出成功");
 		response.sendRedirect("/web/login.jsp"); 
 	}
 

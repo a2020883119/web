@@ -40,7 +40,7 @@ public class ShowTableFilter implements Filter {
 		// TODO Auto-generated method stub
 		// place your code here
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		System.out.println("拦截开始:" + sdf.format(new Date()));
+		System.out.println("\r拦截开始:" + sdf.format(new Date()));
 		HttpServletRequest req = (HttpServletRequest)request;
 		HttpServletResponse res = (HttpServletResponse)response;
 //		System.out.println(req.getContextPath());///web
@@ -48,7 +48,6 @@ public class ShowTableFilter implements Filter {
 		if("/LoginServlet".equals(req.getServletPath())){
 			if("true".equals(req.getSession().getAttribute("login.jsp"))){
 				System.out.println("拦截无效:" + req.getServletPath());
-				
 				chain.doFilter(request, response);
 				return;
 			} 

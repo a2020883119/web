@@ -40,9 +40,9 @@ public class LoginServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		if(!"".equals(password) && password != null && !"".equals(username) && username != null ){
 			if(new ShowTableDao().usernameExists(username)){
-				request.getRequestDispatcher("/ShowServlet").forward(request, response);
 				request.getSession().setAttribute("username", username);
-				return;
+				request.getRequestDispatcher("/ShowServlet").forward(request, response);
+				return; 
 			}
 		}
 		PrintWriter out = response.getWriter();
