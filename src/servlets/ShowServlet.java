@@ -42,9 +42,18 @@ public class ShowServlet extends HttpServlet {
 		ShowTableDao std = new ShowTableDao();
 		@SuppressWarnings("rawtypes")
 		List list = std.getStuList();
-		int totalPage = list.size() / 10 + 1;
+		int totalPage;
+		if(list.size() % 10 == 0 ){
+			totalPage = list.size() / 10;
+		}else{
+			totalPage = list.size() / 10 + 1;
+		}
 		int page = 1;
-		request.getSession().setAttribute("stuList", list.subList(0, 10));
+		if(list.size() >= 10){
+			request.getSession().setAttribute("stuList", list.subList(0, 10));
+		}else{
+			request.getSession().setAttribute("stuList", list.subList(0, list.size()));
+		}
 		request.getSession().setAttribute("first", "1");
 		request.getSession().setAttribute("last", totalPage);
 		request.getSession().setAttribute("page", page);

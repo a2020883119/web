@@ -30,9 +30,9 @@ public class ShowTableDao {
 			st.setString(3, stu.getClas());
 			st.setString(4, stu.getAddr());
 			rs = st.executeQuery();
-			while(rs.next()){
+
 				flag = true;
-			}
+
 			db.safeClose(rs);
 			db.safeClose(st);
 			db.safeClose(conn);
@@ -230,7 +230,7 @@ public class ShowTableDao {
 		boolean flag = false;
 		Connection conn = new DBCon().getConn();
 		Statement stm = conn.createStatement();
-		String sql = "SELECT * FROM USERS WHERE username = '" + username + "'";
+		String sql = "SELECT * FROM showtable_users WHERE username = '" + username + "'";
 		ResultSet rs = stm.executeQuery(sql);
 		if(rs.next()){
 				if(password.equals(rs.getString("password"))){

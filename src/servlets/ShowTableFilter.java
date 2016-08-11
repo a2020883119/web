@@ -45,8 +45,8 @@ public class ShowTableFilter implements Filter {
 		HttpServletResponse res = (HttpServletResponse)response;
 //		System.out.println(req.getContextPath());///web
 //		System.out.println(req.getRequestURI());///web/login.jsp
-		if("/LoginServlet".equals(req.getServletPath())){
-			if("true".equals(req.getSession().getAttribute("login.jsp"))){
+		if("/LoginServlet".equals(req.getServletPath()) || "/RegisServlet".equals(req.getServletPath())){
+			if("true".equals(req.getSession().getAttribute("login.jsp")) || "true".equals(req.getSession().getAttribute("regis.jsp"))){
 				System.out.println("拦截无效:" + req.getServletPath());
 				chain.doFilter(request, response);
 				return;
@@ -54,7 +54,8 @@ public class ShowTableFilter implements Filter {
 		}
 		if("/regis.jsp".equals(req.getServletPath()) || "/login.jsp".equals(req.getServletPath())){
 			System.out.println("拦截无效:" + req.getServletPath());
-			req.getSession().setAttribute("login.jsp", "true");;
+			req.getSession().setAttribute("login.jsp", "true");
+			req.getSession().setAttribute("regis.jsp", "true"); 
 			chain.doFilter(request, response);
 			return; 
 		}

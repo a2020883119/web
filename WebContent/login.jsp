@@ -3,15 +3,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Insert title here</title>
+<script type="text/javascript" src="js/js.js"></script>
+<title>Login</title>
 </head>
 <body>
 <a href="/web/regis.jsp">regis</a>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	<center>
-		<form action="LoginServlet" method="post">
-			username: <input type="text" name="username"/><br>
-			password: <input type="password" name="password"/><br>
+		<form action="LoginServlet" method="post" onsubmit="return checkLoginInput()" >
+			username: <input type="text" name="username" id="username"/><br>
+			password: <input type="password" name="password" id="password"/><br>
 			<input type="submit" value="submit"/> 
 			<input type="reset" value="reset"/>
 		</form>

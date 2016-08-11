@@ -3,15 +3,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script type="text/javascript" src="js/js.js"></script>
 <title>Insert title here</title>
 </head>
+
 <body>
+<a href="ShowServlet">shaotable</a>
 	<center>
-		<form action="InsertServlet" method="post" name="">
-             &nbsp;NAME:&nbsp;<input type="text" name="name"/>
-             CLASS:&nbsp;<input type="text" name="clas"/>
-             &nbsp;ADDR:&nbsp;<input type="text" name="addr"/><br />
-            &nbsp;&nbsp;&nbsp; &nbsp;<input type="submit" value="submit"/>&nbsp;&nbsp;<input type="reset" value="RESET"/><br />
+		<form action="InsertServlet" method="post" onsubmit="return checkInput()">
+             NAME:&nbsp;<input type="text" name="name" id="name"/>&nbsp;
+             CLASS:&nbsp;<input type="text" name="clas" id="clas"/>&nbsp;
+             ADDR:&nbsp;<input type="text" name="addr" id="addr"/><br />&nbsp;&nbsp;&nbsp; &nbsp;
+            <input type="submit" value="submit" />&nbsp;&nbsp;<input type="reset" value="RESET"/><br />
 	    </form>
 	</center>
 </body>

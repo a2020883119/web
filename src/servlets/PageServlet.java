@@ -39,7 +39,12 @@ public class PageServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		ShowTableDao std = new ShowTableDao();
 		List list = std.getStuList();
-		int totalPage = list.size() / 10 + 1;
+		int totalPage;
+		if(list.size() % 10 == 0 ){
+			totalPage = list.size() / 10;
+		}else{
+			totalPage = list.size() / 10 + 1;
+		}
 		int page = Integer.valueOf(request.getParameter("p"));
 		request.getSession().setAttribute("first", "1");
 		request.getSession().setAttribute("last", totalPage);
@@ -51,7 +56,11 @@ public class PageServlet extends HttpServlet {
 			}else{
 				request.getSession().setAttribute("page", page);
 			}
-			request.getSession().setAttribute("stuList", list.subList(page * 10 - 10, page * 10));
+			if(list.size() >= 10){
+				request.getSession().setAttribute("stuList", list.subList(page * 10 - 10, page * 10));
+			}else{
+				request.getSession().setAttribute("stuList", list.subList(0, list.size())); 
+			}
 			request.getRequestDispatcher("/showTable.jsp").forward(request, response);
 			break;
 		case 2:

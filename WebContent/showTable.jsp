@@ -5,6 +5,7 @@
 <!-- EL -->
 <html>
 <head>
+<script type="text/javascript" src="js/js.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>http://localhost:8080/web/showTable.jsp</title>
 </head>
@@ -40,7 +41,7 @@
 				<table border="1" cellspacing="0"
 					style="width: 800px; text-align: center">
 					<tr>
-						<th scope="col" style="width: 100px;">选中</th>
+						<th scope="col" style="width: 10px;  font-style: normal;"><input type="checkbox" name="numss" onclick="checkAll();"/></th>
 						<th scope="col" style="width: 100px;">序号</th>
 						<th scope="col" style="width: 150px;">姓名</th>
 						<th scope="col" style="width: 150px;">班级</th>
@@ -55,8 +56,8 @@
 							<td>${list.name}</td>
 							<td>${list.clas}</td>
 							<td>${list.addr}</td>
-							<td><a href="/web/DeleteServlet?id=${list.id}">删除</a>&nbsp; <a
-								href="/web/showTableChange.jsp?id=${list.id}&name=${list.name}%>&clas=${list.clas}%>&addr=${list.addr}">修改</a>
+							<td><a href="/web/DeleteServlet?id=${list.id}" onclick="return deleteCheck();" >删除</a>&nbsp; <a
+								href="/web/showTableChange.jsp?id=${list.id}&name=${list.name}&clas=${list.clas}&addr=${list.addr}">修改</a>
 							</td>
 						</tr>
 					</c:forEach>
@@ -69,7 +70,7 @@
 						<td><b>操作</b></td>
 					</tr>
 					<tr>
-						<td colspan="1"><span><input type="submit" value="批量删除" /></span></td>
+						<td colspan="1"><span><input type="submit" value="批量删除" onclick=" return deleteCheck();"/></span></td>
 						<td colspan="2">数据总数：<%=session.getAttribute("total")%></td>
 						<td colspan="3"><a href="/web/ShowServlet">首页</a>&nbsp;-&nbsp;
 							<a href="/web/PageServlet?n=1&p=${sessionScope.page }">上页</a>&nbsp;-&nbsp;
