@@ -48,20 +48,22 @@ public class ShowTableFilter implements Filter {
 		if("/LoginServlet".equals(req.getServletPath()) || "/RegisServlet".equals(req.getServletPath())){
 			if("true".equals(req.getSession().getAttribute("login.jsp")) || "true".equals(req.getSession().getAttribute("regis.jsp"))){
 				System.out.println("拦截无效:" + req.getServletPath());
+				req.getSession().setAttribute("login.jsp", "false");
+				req.getSession().setAttribute("regis.jsp", "false"); 
 				chain.doFilter(request, response);
 				return;
 			} 
 		}
-		if("/regis.jsp".equals(req.getServletPath()) || "/login.jsp".equals(req.getServletPath())){
+		if("/regis.jsp".equals(req.getServletPath()) || "/login.jsp".equals(req.getServletPath()) || "/js/js.js".equals(req.getServletPath()) || "/testUsernameServlet".equals(req.getServletPath())){
 			System.out.println("拦截无效:" + req.getServletPath());
 			req.getSession().setAttribute("login.jsp", "true");
-			req.getSession().setAttribute("regis.jsp", "true"); 
+			req.getSession().setAttribute("regis.jsp", "true");  
 			chain.doFilter(request, response);
 			return; 
 		}
-		System.out.println("当前用户:" + req.getSession().getAttribute("username"));
+		System.out.println("当前用户:" + req.getSession().getAttribute("username")); 
 		if(req.getSession().getAttribute("username") != null){
-			req.getSession().getAttribute("username").toString();
+			req.getSession().getAttribute("username").toString(); 
 			chain.doFilter(request, response);
 			System.out.println("拦截无效:" + req.getServletPath());
 		}else{

@@ -12,7 +12,7 @@
 %>
 <body>
 	<center>
-		当前用户:<%=session.getAttribute("username") %>&nbsp;&nbsp;&nbsp;
+		当前用户:<%=session.getAttribute("usename") %>&nbsp;&nbsp;&nbsp;
 		<a href="/web/LoginOutServlet">登出</a>
 		<br><br><br><br>
         <div>

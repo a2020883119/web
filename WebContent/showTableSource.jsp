@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <%
-	List list =  (List)session.getAttribute("stuList");	
+	List list =  (List)session.getAttribute("stulist");	
 %>
 <body>
 	<center>

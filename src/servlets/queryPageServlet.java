@@ -13,13 +13,13 @@ import service.ShowTableDao;
 /**
  * Servlet implementation class PageServlet
  */
-public class PageServlet extends HttpServlet {
+public class queryPageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PageServlet() {
+    public queryPageServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,9 +37,9 @@ public class PageServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		ShowTableDao std = new ShowTableDao();
-		List list = std.getStuList();
-		//List list = request.getSession().getAttribute("")
+//		ShowTableDao std = new ShowTableDao();
+//		List list = std.getStuList();
+		List list = (List) request.getSession().getAttribute("stuListQ");
 		int totalPage;
 		if(list.size() % 10 == 0 ){
 			totalPage = list.size() / 10;
@@ -58,11 +58,11 @@ public class PageServlet extends HttpServlet {
 				request.getSession().setAttribute("page", page);
 			}
 			if(list.size() >= 10){
-				request.getSession().setAttribute("stuList", list.subList(page * 10 - 10, page * 10));
+				request.getSession().setAttribute("stuQueryList", list.subList(page * 10 - 10, page * 10));
 			}else{
-				request.getSession().setAttribute("stuList", list.subList(0, list.size())); 
+				request.getSession().setAttribute("stuQueryList", list.subList(0, list.size())); 
 			}
-			request.getRequestDispatcher("/showTable.jsp").forward(request, response);
+			request.getRequestDispatcher("/showQueryTable.jsp").forward(request, response);
 			break;
 		case 2:
 			if(page != totalPage){
@@ -70,21 +70,21 @@ public class PageServlet extends HttpServlet {
 				page++;
 				request.getSession().setAttribute("page", page);
 				if(page * 10 == list.size()){
-					request.getSession().setAttribute("stuList", list.subList(page * 10 - 10, page * 10)); 
+					request.getSession().setAttribute("stuQueryList", list.subList(page * 10 - 10, page * 10)); 
 				}else{
 					if(page == totalPage){
-						request.getSession().setAttribute("stuList", list.subList(page * 10 - 10, list.size()));
+						request.getSession().setAttribute("stuQueryList", list.subList(page * 10 - 10, list.size()));
 					}else{
-						request.getSession().setAttribute("stuList", list.subList(page * 10 - 10, page * 10)); 
+						request.getSession().setAttribute("stuQueryList", list.subList(page * 10 - 10, page * 10)); 
 					}
 				}
 			}
-			request.getRequestDispatcher("/showTable.jsp").forward(request, response);
+			request.getRequestDispatcher("/showQueryTable.jsp").forward(request, response);
 			break;
 		case 3:
 			request.getSession().setAttribute("page", totalPage);
-			request.getSession().setAttribute("stuList", list.subList(totalPage * 10 - 10, list.size()));
-			request.getRequestDispatcher("/showTable.jsp").forward(request, response);
+			request.getSession().setAttribute("stuQueryList", list.subList(totalPage * 10 - 10, list.size()));
+			request.getRequestDispatcher("/showQueryTable.jsp").forward(request, response);
 			break;
 		}
 		

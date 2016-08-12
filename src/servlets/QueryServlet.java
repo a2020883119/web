@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -46,8 +47,25 @@ public class QueryServlet extends HttpServlet {
 		stu.setName(request.getParameter("name"));
 		stu.setClas(request.getParameter("clas"));
 		stu.setAddr(request.getParameter("addr"));
-		request.getSession().setAttribute("stuList", new ShowTableDao().getQueryStuList(stu));
-		request.getRequestDispatcher("/showTable.jsp").forward(request, response);
+		List list =  new ShowTableDao().getQueryStuList(stu);
+		request.getSession().setAttribute("stuListQ", list);
+		int totalPage;
+		if(list.size() % 10 == 0 ){
+			totalPage = list.size() / 10;
+		}else{
+			totalPage = list.size() / 10 + 1;
+		}
+		int page = 1;
+		if(list.size() >= 10){
+			request.getSession().setAttribute("stuQueryList", list.subList(0, 10));
+		}else{
+			request.getSession().setAttribute("stuQueryList", list.subList(0, list.size()));
+		}
+		request.getSession().setAttribute("first", "1");
+		request.getSession().setAttribute("last", totalPage);
+		request.getSession().setAttribute("page", page);
+		request.getSession().setAttribute("total", list.size());
+		request.getRequestDispatcher("/showQueryTable.jsp").forward(request, response); 
 	}
 
 }

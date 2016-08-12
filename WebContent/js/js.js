@@ -93,3 +93,69 @@ function checkRegisInput(){
 	}
 	return true;
 }
+//查询输入为空检查
+function checkQueryInput(){
+	//alert("");
+	var id =   document.getElementById("id").value
+	var name = document.getElementById("name").value
+	var clas = document.getElementById("clas").value
+	var addr = document.getElementById("addr").value
+	var a = "";
+	var flag = 0;
+	if(id == ""){
+		a += "id\n";
+		flag++;
+	}
+	if(name == ""){
+		a += "name\n";
+		flag++;
+	}
+	if(clas == ""){
+		a += "clas\n";
+		flag++;
+	}
+	if(addr == ""){
+		a += "addr\n";
+		flag++;
+	}
+	if(flag == 4){
+		alert(a+"至少输入一个字段");
+		return false;
+	}else{
+		return true;
+	}
+}
+//function getResult(){
+//	alert("jinqule");
+//	if(httpRequest.readyState == 4){
+//		alert(httpRequest.status == 200);
+//		if(httpRequest.status == 200){
+//			document.getElementById("usernameTip").innerHTML = httpRequest.responseText;
+//			document.getElementById("usernameTip").style.display = "block";
+//		}else{
+//			alert("没有连接上");
+//		}
+//	}
+//	alert("chuqule");
+//}
+function createRequest(url){
+	var httpRequest =false;
+	httpRequest = new XMLHttpRequest();
+	httpRequest.onreadystatechange = getResult;
+	httpRequest.open('GET', url, true);
+	httpRequest.send(null);
+	function getResult(){
+		if(httpRequest.readyState == 4){
+			if(httpRequest.status == 200){
+				document.getElementById("usernameTip").innerHTML = httpRequest.responseText;
+			}else{
+				//document.getElementById("usernameTip").innerHTML = httpRequest.responseText;
+				alert("没有连接上");
+			}
+		}
+	}
+}
+
+function test(username){
+	createRequest('/web/testUsernameServlet?username=' + username.value);
+}

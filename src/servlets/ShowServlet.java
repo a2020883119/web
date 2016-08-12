@@ -1,6 +1,8 @@
 package servlets;
 
 import java.io.IOException;
+
+
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -54,12 +56,11 @@ public class ShowServlet extends HttpServlet {
 		}else{
 			request.getSession().setAttribute("stuList", list.subList(0, list.size()));
 		}
-		request.getSession().setAttribute("first", "1");
+		request.getSession().setAttribute("first", "1"); 
 		request.getSession().setAttribute("last", totalPage);
 		request.getSession().setAttribute("page", page);
 		request.getSession().setAttribute("total", list.size());
 		request.getRequestDispatcher("/showTable.jsp").forward(request, response);
-		
 	}
 	
 }

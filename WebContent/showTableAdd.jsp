@@ -8,7 +8,7 @@
 </head>
 
 <body>
-<a href="ShowServlet">shaotable</a>
+<a href="ShowServlet">showtable</a>
 	<center>
 		<form action="InsertServlet" method="post" onsubmit="return checkInput()">
              NAME:&nbsp;<input type="text" name="name" id="name"/>&nbsp;

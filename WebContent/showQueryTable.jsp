@@ -7,7 +7,7 @@
 <head>
 <script type="text/javascript" src="js/js.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>http://localhost:8080/web/showTable.jsp</title>
+<title>showQueryTable.jsp</title>
 </head>
 <body>
 	<center>
@@ -16,7 +16,7 @@
 		<br><br><br><br>
         <div>
        	  <form action="QueryServlet" method="post" onsubmit="return checkQueryInput()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                ID:&nbsp;<input type="text" name="id" id="id" />&nbsp;&nbsp;&nbsp;
+                ID:&nbsp;<input type="text" name="id" id="id"/>&nbsp;&nbsp;&nbsp;
                 NAME:&nbsp;<input type="text" name="name" id="name"/>&nbsp;&nbsp;
                 CLASS:&nbsp;<input type="text" name="clas" id="clas"/>&nbsp;&nbsp;&nbsp;
                 ADDR:&nbsp;<input type="text" name="addr" id="addr"/><br /><br>
@@ -30,8 +30,8 @@
             	<tr>
             		<td><span><a href="showTableAdd.jsp">添加信息</a></span></td>
             		<td style="text-align:right">
-            			<a href="/web/InsertOneDataServlet">InsertOne</a>&nbsp;&nbsp;
-            			<a href="/web/ShowServlet">Refresh</a>&nbsp;&nbsp;
+            			<!-- <a href="/web/InsertOneDataServlet">InsertOne</a>&nbsp;&nbsp; -->
+            			<a href="/web/ShowServlet">SeeAll</a>&nbsp;&nbsp;
             		</td>
             	</tr>
             </table>   	
@@ -48,7 +48,7 @@
 						<th scope="col" style="width: 300px;">地址</th>
 						<th scope="col" style="width: 100px;">操作</th>
 					</tr>
-					<c:forEach items="${sessionScope.stuList}" var="list">
+					<c:forEach items="${sessionScope.stuQueryList}" var="list">
 						<tr>
 							<td><input type="checkbox" name="nums" value="${list.id}" />
 							</td>
@@ -56,8 +56,8 @@
 							<td>${list.name}</td>
 							<td>${list.clas}</td>
 							<td>${list.addr}</td>
-							<td><a href="/web/DeleteServlet?id=${list.id}" onclick="return deleteCheck();" >删除</a>&nbsp; 
-							<a href="/web/showTableChange.jsp?id=${list.id}&name=${list.name}&clas=${list.clas}&addr=${list.addr}">修改</a>
+							<td><a href="/web/DeleteServlet?id=${list.id}" onclick="return deleteCheck();" >删除</a>&nbsp; <a
+								href="/web/showTableChange.jsp?id=${list.id}&name=${list.name}&clas=${list.clas}&addr=${list.addr}">修改</a>
 							</td>
 						</tr>
 					</c:forEach>
@@ -73,11 +73,11 @@
 						<td colspan="1"><span><input type="submit" value="批量删除" onclick=" return deleteCheck();"/></span></td>
 						<td colspan="2">数据总数：<%=session.getAttribute("total")%></td>
 						<td colspan="3">
-						<a href="/web/ShowServlet">首页</a>&nbsp;-&nbsp;
-							<a href="/web/PageServlet?n=1&p=${sessionScope.page }">上页</a>&nbsp;-&nbsp;
+							<a href="/web/ShowTableServlet">首页</a>&nbsp;-&nbsp;
+							<a href="/web/queryPageServlet?n=1&p=${sessionScope.page }">上页</a>&nbsp;-&nbsp;
 							${sessionScope.page }/${sessionScope.last }&nbsp;-&nbsp; 
-							<a href="/web/PageServlet?n=2&p=${sessionScope.page }">下页</a>&nbsp;-&nbsp;
-							<a href="/web/PageServlet?n=3&p=${sessionScope.last }">末页</a>&nbsp;&nbsp;
+							<a href="/web/queryPageServlet?n=2&p=${sessionScope.page }">下页</a>&nbsp;-&nbsp;
+							<a href="/web/queryPageServlet?n=3&p=${sessionScope.last }">末页</a>&nbsp;&nbsp;
 						</td>
 					</tr>
 				</table>

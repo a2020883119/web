@@ -235,4 +235,24 @@
     <servlet-name>LoginOutServlet</servlet-name>
     <url-pattern>/LoginOutServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>queryPageServlet</display-name>
+    <servlet-name>queryPageServlet</servlet-name>
+    <servlet-class>servlets.queryPageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>queryPageServlet</servlet-name>
+    <url-pattern>/queryPageServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>testUsernameServlet</display-name>
+    <servlet-name>testUsernameServlet</servlet-name>
+    <servlet-class>servlets.testUsernameServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>testUsernameServlet</servlet-name>
+    <url-pattern>/testUsernameServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
