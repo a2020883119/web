@@ -17,7 +17,7 @@ function deleteCheck(){
 	var flag = confirm("确定要删除?")
 	return flag;
 }
-//更改信息 插入信息 是否为空检查
+//更改信息 插入信息 是否为空检查	
 function checkInput(){
 	var name = document.getElementById("name").value
 	var clas = document.getElementById("clas").value
@@ -28,12 +28,24 @@ function checkInput(){
 		a += "请输入name\n";
 		flag = false;
 	}
+	if(name.length > 10){
+		a += "name长度限制为10,你的输入为" + name.length + "\n";
+		flag = false;
+	}
 	if(clas == ""){
 		a += "请输入clas\n";
 		flag = false;
 	}
+	if(clas.length > 20){
+		a += "clas长度限制为20,你的输入为" + clas.length + "\n";
+		flag = false;
+	}
 	if(addr == ""){
 		a += "请输入addr";
+		flag = false;
+	}
+	if(addr.length > 30){
+		a += "addr长度限制为30,你的输入为" + addr.length + "\n";
 		flag = false;
 	}
 	if(flag == false){
@@ -53,8 +65,16 @@ function checkLoginInput(){
 		a += "请输入username\n";
 		flag = false;
 	}
+	if(username.length > 20){
+		a += "username长度限制为20,你的输入为" + username.length + "\n";
+		flag = false;
+	}
 	if(password == ""){
 		a += "请输入password\n";
+		flag = false;
+	}
+	if(password.length > 20){
+		a += "password长度限制为20,你的输入为" + password.length + "\n";
 		flag = false;
 	}
 	if(flag == false){
@@ -74,12 +94,24 @@ function checkRegisInput(){
 		a += "请输入username\n";
 		flag = false;
 	}
+	if(username.length > 20){
+		a += "username长度限制为20,你的输入为" + username.length + "\n";
+		flag = false;
+	}
 	if(password1 == ""){
 		a += "请输入password1\n";
 		flag = false;
 	}
+	if(password1.length > 20){
+		a += "password1长度限制为20,你的输入为" + password1.length + "\n";
+		flag = false;
+	}
 	if(password2 == ""){
 		a += "请输入password2\n";
+		flag = false;
+	}
+	if(password2.length > 20){
+		a += "password2长度限制为20,你的输入为" + password2.length + "\n";
 		flag = false;
 	}
 	if(password1 != password2){
@@ -125,19 +157,6 @@ function checkQueryInput(){
 		return true;
 	}
 }
-//function getResult(){
-//	alert("jinqule");
-//	if(httpRequest.readyState == 4){
-//		alert(httpRequest.status == 200);
-//		if(httpRequest.status == 200){
-//			document.getElementById("usernameTip").innerHTML = httpRequest.responseText;
-//			document.getElementById("usernameTip").style.display = "block";
-//		}else{
-//			alert("没有连接上");
-//		}
-//	}
-//	alert("chuqule");
-//}
 function createRequest(url){
 	var httpRequest =false;
 	httpRequest = new XMLHttpRequest();
@@ -150,7 +169,7 @@ function createRequest(url){
 				document.getElementById("usernameTip").innerHTML = httpRequest.responseText;
 			}else{
 				//document.getElementById("usernameTip").innerHTML = httpRequest.responseText;
-				alert("没有连接上");
+				alert("连接失败");
 			}
 		}
 	}

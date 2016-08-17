@@ -42,6 +42,7 @@ public class LoginServlet extends HttpServlet {
 			try {
 				if(new ShowTableDao().login(username, password)){
 					request.getSession().setAttribute("username", username);
+					request.getSession().setMaxInactiveInterval(60 * 5);
 					request.getRequestDispatcher("/ShowServlet").forward(request, response);
 					return; 
 				}
